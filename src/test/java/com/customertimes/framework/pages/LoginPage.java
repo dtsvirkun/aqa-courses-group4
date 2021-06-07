@@ -28,7 +28,7 @@ public class LoginPage extends AbstractPage {
 
     @Override
     public void openPage() {
-        driver.get("url/login");
+        driver.get(BASE_PAGE + "/login");
     }
 
     public void searchByText(String text) {

@@ -1,11 +1,10 @@
-package com.customertimes.test.login;
+package com.customertimes.test.aws;
 
 
 import com.customertimes.test.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import static com.customertimes.framework.driver.WebdriverRunner.getWebDriver;
 
 public class AmazonTest extends BaseTest {
 

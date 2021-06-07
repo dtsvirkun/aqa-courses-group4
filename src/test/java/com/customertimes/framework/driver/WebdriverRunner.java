@@ -5,6 +5,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class WebdriverRunner {
 
@@ -22,8 +27,20 @@ public class WebdriverRunner {
                     break;
                 }
                 default: {
-                    WebDriverManager.chromedriver().setup();
-                    driver.set(new ChromeDriver());
+                    if (TestConfig.CONFIG.remote()) {
+                        try {
+                            DesiredCapabilities capabilities = new DesiredCapabilities();
+                            capabilities.setCapability("browserName", "chrome");
+                            capabilities.setCapability("browserVersion", "90.0");
+                            capabilities.setCapability("enableVNC", true);
+                            driver.set(new RemoteWebDriver(new URL(TestConfig.CONFIG.seleniumServerUrl()), capabilities));
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        WebDriverManager.chromedriver().setup();
+                        driver.set(new ChromeDriver());
+                    }
                 }
             }
             driver.get().manage().window().maximize();

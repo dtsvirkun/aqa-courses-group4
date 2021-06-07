@@ -1,5 +1,6 @@
 package com.customertimes.test;
 
+import com.customertimes.framework.config.TestConfig;
 import com.customertimes.framework.driver.WebdriverRunner;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
