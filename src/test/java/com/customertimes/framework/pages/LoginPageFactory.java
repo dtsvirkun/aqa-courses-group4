@@ -1,6 +1,7 @@
 package com.customertimes.framework.pages;
 
 import com.customertimes.model.Customer;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,35 +46,42 @@ public class LoginPageFactory extends AbstractPage {
     }
 
 
+    @Step
     public String getActualNameText(String currentEmail) {
         wait.until(ExpectedConditions.textToBe(goToUserProfileButton, currentEmail));
         String actualNameText = getWebDriver().findElement(goToUserProfileButton).getText();
         return actualNameText;
     }
 
+    @Step("Click on account button")
     public void clickOnAccountButton() {
         navbarAccount.click();
     }
 
+    @Step("Click on login button")
     public void clickOnLoginButton() {
         loginButton.click();
     }
 
+    @Step("Enter password")
     public void enterPassword(String password) {
         passwordField.clear();
         passwordField.sendKeys(password);
     }
 
+    @Step("Enter email")
     public void enterEmail(String email) {
         emailField.clear();
         emailField.sendKeys(email);
     }
 
+    @Step
     public void navigateToLoginPage() {
         clickOnAccountButton();
         loginSubmitButton.click();
     }
 
+    @Step
     public void loginAs(Customer customer) {
         navigateToLoginPage();
         enterEmail(customer.getEmail());
