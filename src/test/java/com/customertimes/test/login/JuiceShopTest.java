@@ -44,11 +44,6 @@ public class JuiceShopTest extends BaseTest {
     public void userCanLoginToJuiceShop() {
         pageFactory.loginAs(customer);
 
-        try {
-            Thread.sleep(10_000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         fluentPage.clickOnAccountButton();
         String actualNameText = pageFactory.getActualNameText(customer.getEmail());
 
